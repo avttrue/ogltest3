@@ -48,6 +48,7 @@ private:
     double m_AngleObject;
     double m_AngleGrop1;
     double m_AngleGrop2;
+    double m_AngleGrop3;
     double m_AngleGropMain;
 };
 

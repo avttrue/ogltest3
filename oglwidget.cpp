@@ -146,42 +146,43 @@ void OGLWidget::timerEvent(QTimerEvent *event)
         if(i % 2 == 0)
         {
             m_Objects.at(i)->rotate(QQuaternion::fromAxisAndAngle(
-                1.0f, 0.0f, 0.0f, static_cast<float>(qSin(m_AngleObject))));
+                                        1.0f, 0.0f, 0.0f, static_cast<float>(qSin(m_AngleObject))));
             m_Objects.at(i)->rotate(QQuaternion::fromAxisAndAngle(
-                0.0f, 1.0f, 0.0f, static_cast<float>(qCos(m_AngleObject))));
+                                        0.0f, 1.0f, 0.0f, static_cast<float>(qCos(m_AngleObject))));
         }
         else
         {
             m_Objects.at(i)->rotate(QQuaternion::fromAxisAndAngle(
-                0.0f, 1.0f, 0.0f, static_cast<float>(qSin(m_AngleObject))));
+                                        0.0f, 1.0f, 0.0f, static_cast<float>(qSin(m_AngleObject))));
             m_Objects.at(i)->rotate(QQuaternion::fromAxisAndAngle(
-                1.0f, 0.0f, 0.0f, static_cast<float>(qCos(m_AngleObject))));
+                                        1.0f, 0.0f, 0.0f, static_cast<float>(qCos(m_AngleObject))));
         }
     }
 
     m_Groups.at(0)->rotate(QQuaternion::fromAxisAndAngle(
-        0.0f, 0.0f, 1.0f, static_cast<float>(qSin(m_AngleGrop1))));
+                               0.0f, 0.0f, 1.0f, static_cast<float>(qSin(m_AngleGrop1))));
     m_Groups.at(0)->rotate(QQuaternion::fromAxisAndAngle(
-        0.0f, 1.0f, 0.0f, static_cast<float>(-qSin(m_AngleGrop1))));
+                               0.0f, 1.0f, 0.0f, static_cast<float>(-qSin(m_AngleGrop1))));
 
     m_Groups.at(1)->rotate(QQuaternion::fromAxisAndAngle(
-        1.0f, 0.0f, 0.0f, static_cast<float>(qCos(m_AngleGrop2))));
+                               1.0f, 0.0f, 0.0f, static_cast<float>(qCos(m_AngleGrop2))));
     m_Groups.at(1)->rotate(QQuaternion::fromAxisAndAngle(
-        0.0f, 1.0f, 0.0f, static_cast<float>(-qCos(m_AngleGrop2))));
+                               0.0f, 1.0f, 0.0f, static_cast<float>(-qCos(m_AngleGrop2))));
 
     m_Groups.at(2)->rotate(QQuaternion::fromAxisAndAngle(
-        1.0f, 0.0f, 0.0f, static_cast<float>(qSin(m_AngleGropMain))));
+                               0.0f, 1.0f, 0.0f, static_cast<float>(qSin(m_AngleGrop3))));
     m_Groups.at(2)->rotate(QQuaternion::fromAxisAndAngle(
-        0.0f, 1.0f, 0.0f, static_cast<float>(qCos(m_AngleGropMain))));
+                               0.0f, 0.0f, 1.0f, static_cast<float>(qCos(m_AngleGrop3))));
 
     m_Groups.at(3)->rotate(QQuaternion::fromAxisAndAngle(
-        1.0f, 0.0f, 0.0f, static_cast<float>(-qSin(m_AngleGropMain))));
+                               1.0f, 0.0f, 0.0f, static_cast<float>(-qSin(m_AngleGropMain))));
     m_Groups.at(3)->rotate(QQuaternion::fromAxisAndAngle(
-        0.0f, 1.0f, 0.0f, static_cast<float>(-qCos(m_AngleGropMain))));
+                               0.0f, 1.0f, 0.0f, static_cast<float>(-qCos(m_AngleGropMain))));
 
     m_AngleObject += M_PI / 180.0;
     m_AngleGrop1 += M_PI / 360.0;
     m_AngleGrop2 -= M_PI / 360.0;
+    m_AngleGrop3 -= M_PI / 270.0;
     m_AngleGropMain += M_PI / 720.0;
 
     update();
