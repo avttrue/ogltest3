@@ -9,7 +9,7 @@
 OGLWidget::OGLWidget(QWidget *parent)
     : QOpenGLWidget(parent)
 {
-    m_EyeZ = -5.0f;
+    m_EyeZ = -10.0f;
 }
 
 OGLWidget::~OGLWidget()
@@ -54,9 +54,26 @@ void OGLWidget::initializeGL()
     }
     m_Groups.last()->translate(QVector3D(4.0f, 0.0f, 0.0f));
 
+
+    m_Groups.append(new Group3DObjects);
+    for(float x = -step; x <= step; x += step)
+    {
+        for(float y = -step; y <= step; y += step)
+        {
+            for(float z = -step; z <= step; z += step)
+            {
+                initCube(1.0f, QImage(":/cube2.png"));
+                m_Objects.at(m_Objects.size() - 1)->translate(QVector3D(x, y, z));
+                m_Groups.at(m_Groups.size() - 1)->add(m_Objects.at(m_Objects.size() - 1));
+            }
+        }
+    }
+    m_Groups.last()->translate(QVector3D(0.0f, 0.0f, -8.0f));
+
     m_Groups.append(new Group3DObjects);
     m_Groups.last()->add(m_Groups.at(0));
     m_Groups.last()->add(m_Groups.at(1));
+    m_Groups.last()->add(m_Groups.at(2));
     m_TransformObjects.append(m_Groups.last());
 
     m_Timer.start(30, this);
@@ -156,6 +173,11 @@ void OGLWidget::timerEvent(QTimerEvent *event)
         1.0f, 0.0f, 0.0f, static_cast<float>(qSin(m_AngleGropMain))));
     m_Groups.at(2)->rotate(QQuaternion::fromAxisAndAngle(
         0.0f, 1.0f, 0.0f, static_cast<float>(qCos(m_AngleGropMain))));
+
+    m_Groups.at(3)->rotate(QQuaternion::fromAxisAndAngle(
+        1.0f, 0.0f, 0.0f, static_cast<float>(-qSin(m_AngleGropMain))));
+    m_Groups.at(3)->rotate(QQuaternion::fromAxisAndAngle(
+        0.0f, 1.0f, 0.0f, static_cast<float>(-qCos(m_AngleGropMain))));
 
     m_AngleObject += M_PI / 180.0;
     m_AngleGrop1 += M_PI / 360.0;
