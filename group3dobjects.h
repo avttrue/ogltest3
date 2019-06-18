@@ -4,6 +4,8 @@
 #include "transformational.h"
 
 #include <QVector>
+#include <QQuaternion>
+#include <QVector3D>
 #include <QMatrix4x4>
 
 class Group3DObjects : public Transformational

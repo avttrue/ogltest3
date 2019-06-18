@@ -1,7 +1,5 @@
 #include "group3dobjects.h"
 
-#include <QMatrix4x4>
-
 Group3DObjects::Group3DObjects()
 {
     m_Scale = 1.0f;
